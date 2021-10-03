@@ -1,0 +1,171 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* -------------------------------------------------------------------------------End of Meyer Reset----------------------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
+
+body {
+	font-family: 'Arvo';
+}
+
+.nav-container {
+	width: 99.1vw;
+	min-height: 100px;
+	display: flex;
+	border-bottom: 2px solid black;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #014421;
+	color: #ED5005;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.nav-container h1 {
+	margin-left: 6%;
+	font-size: 2em;
+}
+
+.nav-container nav {
+	margin-right: 6%;
+}
+
+.nav-container ul {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.nav-container span {
+	margin-right: 4%;
+	margin-left: 6%;
+}
+
+.nav-container li {
+	width: 80px;
+	text-decoration: none;
+	color: #ED5005;
+}
+
+.nav-container span {
+	color: black;
+}
+
+.nav-container li:hover {
+	cursor: pointer;
+	color: white;
+}
+
+.landing-container {
+	background-image: url("https://www.doi.gov/sites/doi.gov/files/blog-post/thumbnail-images/glaciernpshanlin.jpg");
+	background-size: cover;
+	height: 80vh;
+	border-bottom: 2px solid black;
+}
+
+.landing-container h1 {
+	text-align: center;
+	color: #ED5005;
+	font-size: 30px;
+	padding-top: 2%;
+	font-weight: bold;
+}
+
+.landing-container .title {
+	font-size: 46px;
+	margin-top: -2%;
+}
+
+.landing-info {
+	display: flex;
+	align-items: center;
+}
+
+.landing-info .landing-img {
+	border-right: 1px solid black;
+	width: 50vw;
+	image-resolution: from-image;
+}
+
+.landing-info p {
+	margin-top: 5%;
+	width: 70%;
+	text-align: center;
+	margin-left: 14%;
+	line-height: 30px;
+	font-size: 26px;
+}
+
+.p-title {
+	margin-top: -8%;
+	font-size: 34px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.p-content span {
+	text-decoration: underline;
+	font-weight: bold;
+	color: #ED5005;
+	margin-left: 1%;
+	margin-right: 1%;
+}
+
+.landing-info button {
+	margin-top: 6%;
+	margin-left: 26%;
+	font-family: 'Arvo';
+	width: 100px;
+	height: 30px;
+	background-color: #014421;
+	color: #ED5005;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 6px;
+	cursor: pointer;
+}
