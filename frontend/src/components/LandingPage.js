@@ -28,7 +28,7 @@ export default function LandingPage() {
                         <button className='cta-button'>Sign up</button>
                     </Link>
                     <Link to='/login'>
-                        <button>Log in</button>
+                        <button className='cta2-button'>Log in</button>
                     </Link>
                 </div>
             </div>

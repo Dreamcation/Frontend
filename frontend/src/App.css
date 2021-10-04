@@ -47,6 +47,7 @@ table {
 	border-spacing: 0;
 }
 /* -------------------------------------------------------------------------------End of Meyer Reset----------------------------------------------------------------------------------------- */
+@import url('https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Arvo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
 
@@ -55,7 +56,7 @@ body {
 }
 
 .nav-container {
-	width: 99.1vw;
+	width: 100%;
 	min-height: 100px;
 	display: flex;
 	border-bottom: 2px solid black;
@@ -89,7 +90,7 @@ body {
 .nav-container li {
 	width: 80px;
 	text-decoration: none;
-	color: #ED5005;
+	/* color: #ED5005; */
 }
 
 .nav-container span {
@@ -111,13 +112,13 @@ body {
 .landing-container h1 {
 	text-align: center;
 	color: #ED5005;
-	font-size: 30px;
+	font-size: 40px;
 	padding-top: 2%;
 	font-weight: bold;
 }
 
 .landing-container .title {
-	font-size: 46px;
+	font-size: 62px;
 	margin-top: -2%;
 }
 
@@ -156,16 +157,353 @@ body {
 	margin-right: 1%;
 }
 
-.landing-info button {
+.landing-info .cta-button {
 	margin-top: 6%;
-	margin-left: 26%;
+	margin-left: 28%;
 	font-family: 'Arvo';
 	width: 100px;
-	height: 30px;
+	height: 40px;
 	background-color: #014421;
 	color: #ED5005;
 	font-size: 16px;
 	font-weight: bold;
 	border-radius: 6px;
 	cursor: pointer;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  	transition: all 0.3s ease 0s;
+	outline: none;
+}
+
+.landing-info .cta2-button {
+	margin-top: 6%;
+	margin-left: 24%;
+	font-family: 'Arvo';
+	width: 100px;
+	height: 40px;
+	background-color: #014421;
+	color: #ED5005;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 6px;
+	cursor: pointer;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  	transition: all 0.3s ease 0s;
+	outline: none;
+}
+
+.landing-info button:hover {
+	color: #fff;
+	transform: translateY(-7px);
+}
+
+.search-container {
+	width: 100%;
+	height: 120px;
+	border-bottom: 1px solid black;
+}
+
+.search-container h1 {
+	text-align: center;
+	font-size: 32px;
+	padding-top: 1%;
+	font-weight: bold;
+}
+
+.search-container input {
+	border-bottom: 1px solid black;
+	display: block;
+	margin: 1% auto;
+	width: 18%;
+}
+
+.search-container input:focus {
+	outline: none;
+}
+
+.search-container input::placeholder {
+	text-align: center;
+}
+
+.search-container button {
+	float: right;
+	margin-top: -3%;
+	margin-right: 5%;
+	background-color: #014421;
+	border: 1px solid black;
+	width: 90px;
+	height: 40px;
+	color:#ED5005;
+	border-radius: 6px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  	transition: all 0.3s ease 0s;
+	font-weight: bold;
+}
+
+.search-container button:hover {
+	color: #fff;
+	transform: translateY(-2px);
+}
+
+.left-image {
+	border-bottom: 1px solid black;
+	display: flex;
+}
+
+.left-image .img {
+	width: 50%;
+}
+
+.left-image img {
+	width: 100%;
+	height: 520px;
+}
+
+.left-image .text {
+	margin: 4% auto;
+	text-align: center;
+	width: 50%;
+}
+
+.left-image .text h1 {
+	font-size: 32px;
+	font-weight: bold;
+}
+
+.left-image .text p {
+	width: 34%;
+	margin: 2% auto;
+	line-height: 30px;
+}
+
+.left-image .text button {
+	margin-top: 2%;
+	background-color: #014421;
+	border: 1px solid black;
+	width: 90px;
+	height: 40px;
+	color:#ED5005;
+	border-radius: 6px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  	transition: all 0.3s ease 0s;
+	font-weight: bold;
+}
+
+.left-image .text button:hover {
+	color: #fff;
+	transform: translateY(-2px);
+}
+
+.left-image .bottom-content {
+	display: flex;
+	margin-top: 12%;
+	margin-bottom: -12%;
+}
+
+.right-image .img {
+	width: 50%;
+	float: right;
+}
+
+.right-image img {
+	float: right;
+	width: 100%;
+	height: 520px;
+}
+
+.right-image .text {
+	padding: auto;
+	padding-top: 4%;
+	text-align: center;
+	width: 50%;
+}
+
+.right-image .text h1 {
+	font-size: 32px;
+	font-weight: bold;
+}
+
+.right-image .text p {
+	width: 34%;
+	margin: 2% auto;
+	line-height: 30px;
+}
+
+.right-image .text button {
+	margin-top: 2%;
+	background-color: #014421;
+	border: 1px solid black;
+	width: 90px;
+	height: 40px;
+	color:#ED5005;
+	border-radius: 6px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  	transition: all 0.3s ease 0s;
+	font-weight: bold;
+}
+
+.right-image .text button:hover {
+	color: #fff;
+	transform: translateY(-2px);
+}
+
+.right-image .bottom-content {
+	display: flex;
+	margin-top: 12%;
+	margin-bottom: -12%;
+}
+
+.favorite-columns {
+	display: flex;
+	justify-content: space-between;
+}
+
+.favorite-columns h1 {
+	font-size: 32px;
+	margin-top: 2%;
+}
+
+.favorite-columns .visited {
+	text-align: center;
+	width: 33%;
+	height: 100vh;
+	border-right: 1px solid black;
+}
+
+.favorite-columns :last-child {
+	border-right: none;
+}
+
+.favorite-columns .card {
+	width: 50%;
+	margin: 4% auto;
+	border: 1px solid #014421;
+	height: 400px;
+	background-color: #014421;
+	color: #ED5005;
+	border-radius: 6px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+	margin-bottom: 4%;
+}
+
+.favorite-columns .card h2 {
+	margin-top: 4%;
+	font-size: 22px;
+}
+
+.favorite-columns .card button {
+	margin-top: 12%;
+	background-color: #455b46;
+	border: 1px solid white;
+	width: 90px;
+	height: 40px;
+	color:#ED5005;
+	border-radius: 6px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  	transition: all 0.3s ease 0s;
+	font-weight: bold;
+}
+
+.favorite-columns .card button:hover {
+	color: #fff;
+	transform: translateY(-2px);
+}
+
+.bg-image {
+	background-image: url('https://www.doi.gov/sites/doi.gov/files/blog-post/thumbnail-images/glaciernpshanlin.jpg');
+	width: 100%;
+	height: 100vh;
+	background-size: cover;
+	position: absolute;
+}
+
+.form {
+	text-align: center;
+	margin: 6% auto;
+	border: 1px solid black;
+	width: 40%;
+	height: 600px;
+	border-radius: 6px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+	background-color: #014421;
+	color: #ED5005;
+}
+
+.form h1 {
+	margin-top: 4%;
+	font-size: 30px;
+}
+
+.form-container {
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+	margin: 2% auto;
+}
+
+.form-container span {
+	margin-bottom: 1%;
+}
+
+.form-container input {
+	margin-bottom: 6%;
+	height: 30px;
+	text-align: center;
+}
+
+.form button {
+	margin-top: 4%;
+	margin-left: 7%;
+	margin-right: 7%;
+	background-color: #455b46;
+	border: 1px solid white;
+	width: 100px;
+	height: 40px;
+	color:#ED5005;
+	border-radius: 6px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  	transition: all 0.3s ease 0s;
+	font-weight: bold;
+}
+
+.form button:hover {
+	color: #fff;
+	transform: translateY(-2px);
+}
+
+
+.form2 {
+	text-align: center;
+	margin: 12% auto;
+	border: 1px solid black;
+	width: 40%;
+	height: 400px;
+	border-radius: 6px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+	background-color: #014421;
+	color: #ED5005;
+}
+
+.form2 h1 {
+	margin-top: 4%;
+	font-size: 30px;
+}
+
+.form2 button {
+	margin-top: 4%;
+	margin-left: 7%;
+	margin-right: 7%;
+	background-color: #455b46;
+	border: 1px solid white;
+	width: 100px;
+	height: 40px;
+	color:#ED5005;
+	border-radius: 6px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  	transition: all 0.3s ease 0s;
+	font-weight: bold;
+}
+
+.form2 button:hover {
+	color: #fff;
+	transform: translateY(-2px);
 }
