@@ -352,11 +352,6 @@ body {
 	margin-bottom: -12%;
 }
 
-.favorite-columns {
-	display: flex;
-	justify-content: space-between;
-}
-
 .favorite-columns h1 {
 	font-size: 32px;
 	margin-top: 2%;
@@ -364,17 +359,13 @@ body {
 
 .favorite-columns .visited {
 	text-align: center;
-	width: 33%;
-	height: 100vh;
-	border-right: 1px solid black;
-}
-
-.favorite-columns :last-child {
-	border-right: none;
+	min-height: 100%;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .favorite-columns .card {
-	width: 50%;
+	width: 20%;
 	margin: 4% auto;
 	border: 1px solid #014421;
 	height: 400px;
@@ -383,11 +374,17 @@ body {
 	border-radius: 6px;
 	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
 	margin-bottom: 4%;
+	margin-left: 8%;
 }
 
 .favorite-columns .card h2 {
 	margin-top: 4%;
 	font-size: 22px;
+}
+
+.favorite-columns .card img {
+	height: 200px;
+	width: 100%;
 }
 
 .favorite-columns .card button {

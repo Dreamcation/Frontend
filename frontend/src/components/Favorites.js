@@ -1,36 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export default function Favorites() {
+    const [favorites, setFavorites] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:9292/favorites')
+        .then(res => res.json())
+        .then(setFavorites)
+    }, [])
+
+    console.log(favorites);
+
     return (
         <div>
             <div className='search-container'>
-                    <h1>Your favorite trips!</h1>
-                    <input placeholder="Search by Location...   🔍"></input>
+                <h1>Your favorite trips!</h1>
+                <input placeholder="Search by Location...   🔍"></input>
             </div>
             <div className='favorite-columns'>
                 <div className='visited'>
-                    <h1>Visited</h1>
-                    <div className='card'>
-                        <img src='https://www.teahub.io/photos/full/224-2243561_pretty-outdoor-backgrounds.jpg' />
-                        <h2>Everglade National Park</h2>
-                        <button>Remove</button>
-                    </div>
-                </div>
-                <div className='visited'>
-                    <h1>Visiting</h1>
-                    <div className='card'>
-                        <img src='https://www.teahub.io/photos/full/224-2243561_pretty-outdoor-backgrounds.jpg' />
-                        <h2>Everglade National Park</h2>
-                        <button>Remove</button>
-                    </div>
-                </div>
-                <div className='visited'>
-                    <h1>Dreamcation</h1>
-                    <div className='card'>
-                        <img src='https://www.teahub.io/photos/full/224-2243561_pretty-outdoor-backgrounds.jpg' />
-                        <h2>Everglade National Park</h2>
-                        <button>Remove</button>
-                    </div>
+                    {favorites.map(favorite => {
+                        return (
+                            <div className='card'>
+                                <img src={favorite.image} />
+                                <h2>{favorite.title}</h2>
+                                <button>Remove</button>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         </div>
