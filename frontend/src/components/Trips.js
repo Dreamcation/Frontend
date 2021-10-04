@@ -1,6 +1,29 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import Cards from './Cards'
 
 export default function Trips() {
+    const [trips, setTrips] = useState([])
+
+    useEffect(() => {
+        fetch('http://localhost:9292/trips')
+        .then(res => res.json())
+        .then(setTrips)
+    }, [])
+    console.log(trips);
+
+
+    const cards = trips.map(trip => (
+            <Cards key={trip.id}
+                // name={trip.name}
+                desc={trip.description}
+                length={trip.lengthOfStay}
+                author={trip.author}
+                image={trip.image}
+                id={trip.id} 
+            />
+    ))
+    console.log(cards);
+
     return (
         <div className='trip-container'>
             <div className='search-container'>
@@ -9,6 +32,8 @@ export default function Trips() {
                 <button>Add Trip</button>
             </div>
             <div className='all-trips'>
+            {cards}
+            {/* <div className='all-trips'>
                 <div className='left-image'>
                     <div className='img'>
                         <img src="https://www.teahub.io/photos/full/224-2243561_pretty-outdoor-backgrounds.jpg"/>
@@ -51,6 +76,7 @@ export default function Trips() {
                         </div>
                     </div>
                 </div>
+            </div> */}
             </div>
         </div>
     )

@@ -1,0 +1,33 @@
+{
+  
+  "trips" : [
+    {
+      "id": 1,
+      "name": "Smokys",
+      "desc": "This is what we did on our trip, it was a lot of fun, we enjoyed it, we really can’t wait to go back we met some new friends, and took some amazing pictures",
+      "length": 5,
+      "author": "Billy"
+    }, 
+    {
+      "id": 2,
+      "name": "Smokys",
+      "desc": "This is what we did on our trip, it was a lot of fun, we enjoyed it, we really can’t wait to go back we met some new friends, and took some amazing pictures",
+      "length": 3,
+      "author": "Billy"
+    },
+    {
+      "id": 3,
+      "name": "Smokys",
+      "desc": "This is what we did on our trip, it was a lot of fun, we enjoyed it, we really can’t wait to go back we met some new friends, and took some amazing pictures",
+      "length": 2,
+      "author": "Billy"
+    },
+    {
+      "id": 4,
+      "name": "Smokys",
+      "desc": "This is what we did on our trip, it was a lot of fun, we enjoyed it, we really can’t wait to go back we met some new friends, and took some amazing pictures",
+      "length": 6,
+      "author": "Billy"
+    }
+  ]
+}

@@ -450,10 +450,16 @@ body {
 	text-align: center;
 }
 
-.form button {
+.form-container .form-button {
+	display: flex;
+	justify-content: space-between;
+}
+
+.form-container button {
 	margin-top: 4%;
-	margin-left: 7%;
-	margin-right: 7%;
+	/* width: 100%;
+	margin-left: 17%;
+	float: left; */
 	background-color: #455b46;
 	border: 1px solid white;
 	width: 100px;
