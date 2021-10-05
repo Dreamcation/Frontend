@@ -2,16 +2,17 @@ import React, {useState, useEffect} from 'react'
 import Cards from './Cards'
 import { Link } from 'react-router-dom'
 
-export default function Trips({trips}) {
-    
+export default function Trips({trips, addFavorite}) {
     const cards = trips.map(trip => (
-            <Cards key={trip.id}
+            <Cards 
+                key={trip.id}
                 location={trip.location}
                 desc={trip.description}
                 length={trip.lengthOfStay}
                 author={trip.name}
                 image={trip.image}
                 id={trip.id} 
+                addFavorite={addFavorite}
             />
     ))
 

@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 
-export default function AddTrip({ handleAdd, trips }) {
+export default function AddTrip({ handleAdd, trips, user }) {
     const [title, setTitle] = useState('')
     const [location, setLocation] = useState('')
     const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
     const [lengthOfStay, setLengthOfStay] = useState('')
-    const {user_id} = trips
+    // const {user_id} = trips
 
     function handleSubmit(e) {
         e.preventDefault()
-
+        let user_id = user[0].id
         fetch('http://localhost:9292/trips', {
             method: "POST",
             headers: {
@@ -22,12 +22,13 @@ export default function AddTrip({ handleAdd, trips }) {
                 image,
                 description,
                 lengthOfStay,
-                user_id,
+                user_id
             })
         })
         .then(res => res.json())
         .then((newTrip) => handleAdd(newTrip))
-
+        debugger;
+        // ^ this is not hittting
         setTitle('')
         setLocation('')
         setImage('')

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
-export default function Favorites() {
-    const [favorites, setFavorites] = useState([])
+export default function Favorites({user, favorites, handleRemove}) {
+    // const [favorites, setFavorites] = useState([])
 
-    useEffect(() => {
-        fetch('http://localhost:9292/favorites')
-        .then(res => res.json())
-        .then(setFavorites)
-    }, [])
+    // useEffect(() => {
+    //     fetch('http://localhost:9292/favorites')
+    //     .then(res => res.json())
+    //     .then(setFavorites)
+    // }, [])
 
     console.log(favorites);
 
@@ -21,10 +21,10 @@ export default function Favorites() {
                 <div className='visited'>
                     {favorites.map(favorite => {
                         return (
-                            <div className='card'>
+                            <div className='card' id={favorite.id}>
                                 <img src={favorite.image} />
                                 <h2>{favorite.title}</h2>
-                                <button>Remove</button>
+                                <button onClick={handleRemove}>Remove</button>
                             </div>
                         )
                     })}
