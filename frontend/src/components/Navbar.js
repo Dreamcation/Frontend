@@ -1,11 +1,18 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, Redirect} from 'react-router-dom'
 
-export default function Navbar({user}) {
+export default function Navbar({user, logOut}) {
     let loggedIn = "Log in";
     if (user[0]) {
         loggedIn = user[0].firstName +" - Log out";
     };
+
+    function handleLogOut(e){
+        e.preventDefault();
+        debugger;
+        user[0] !== undefined ? logOut(e) : <Redirect to="/login" />
+        // ^does not work      
+    }
 
     let loginLink = loggedIn ? '/' : '/login'
 
@@ -20,7 +27,7 @@ export default function Navbar({user}) {
                     <span>||</span>
                     <NavLink activeClassName="text-white" to='/signup' style={{ textDecoration: 'none' }}><li>Sign up</li></NavLink>
                     
-                    <NavLink activeClassName="text-white" to={loginLink} style={{ textDecoration: 'none' }}><li>{loggedIn}</li></NavLink>
+                    <NavLink activeClassName="text-white" to={loginLink} style={{ textDecoration: 'none' }}><li onClick={handleLogOut}>{loggedIn}</li></NavLink>
                 </ul>
             </nav>
         </div>

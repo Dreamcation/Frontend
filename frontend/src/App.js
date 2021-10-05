@@ -43,19 +43,18 @@ function App() {
 
   useEffect(() => {
     getTrips();
-  }, [user])
+  }, [user, update])
 
   useEffect(() => {
     userLoggedOn(); 
   }, [update])
 
   useEffect(() => {
-  getFavorites(user);
-  }, [user])
+    getFavorites(user);
+  }, [user, update])
 
   function logIn (e, formData) {
     e.preventDefault();
-    debugger;
     fetch('http://localhost:9292/login',{
       method: "PATCH",
       redirect: "follow",
@@ -74,58 +73,69 @@ function App() {
     .catch(error => console.log("Log in incorrect: ", error))
   }
 
+  function logOut (e) {
+    e.preventDefault();
+    let id = user[0].id;
+    fetch(`http://localhost:9292/logout/${id}`,{
+      method: "PATCH",
+      redirect: "follow",
+      headers: {
+        'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({
+        username: user[0].username,
+        user_id: id
+    })})
+    .then(res => res.json())
+    .then(user => {
+      setUser([]);
+      setUpdate(!update)
+    })
+    .catch(error => console.log("Log out error: ", error))
+  }
+
   function handleRemove (e) {
     e.preventDefault();
-    debugger;
     let id = e.target.parentNode.id;
     fetch(`http://localhost:9292/favorites/${id}`, {
       method: "DELETE",
       redirect: "follow"})
     .then(res => res.json())
-    .then(favorites => setFavorites(favorites))
-    debugger;
+    .then(setUpdate(!update))
     // remove favorite from favorites state
   }
 
-  function addFavorite(favorite) {
+  function addFavorite(trip) {
     debugger;
     // not setup yet
-    // let favorite = {
-    //   title: favorite.title,
-    //   location: favorite.location,
-    //   image: favorite.image,
-    //   user_id: user.id
-    // }
-    // fetch('http://localhost:9292/favorites', {
-    //   method: "POST",
-    //   redirect: "follow",
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //     },
-    //   body: JSON.stringify({favorite})
-    // })
-    // .then(res => res.json())
-    // .then(favorites => {
-    //   setFavorites(favorites);
-    //   setUser(user)
-    // })
-  }
-
-  // not hitting function. trips are added on the backend
-  // move over to post fetch in addTrip
-  function handleAdd(newTrip) {
+    let favorite = {
+      title: trip.title,
+      location: trip.location,
+      image: trip.image,
+      user_id: user[0].id
+    }
+    fetch('http://localhost:9292/favorites', {
+      method: "POST",
+      redirect: "follow",
+      headers: {
+        'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({favorite})
+    })
+    .then(res => res.json())
+    .then(favorites => {
+      setFavorites(favorites);
+      setUser(user);
+    })
     debugger;
-    // console.log(newTrip) 
-    const updatedTrips = [...trips, newTrip]
-    setTrips(updatedTrips)
-}
+  }
 
   return (
     <div className="App">
-      <Navbar user={user}/>
+      <Navbar user={user} logOut={logOut}/>
       <Switch>
         <Route path='/trips/new'>
-          <AddTrip handleAdd={handleAdd} trips={trips} user={user}/>
+          <AddTrip trips={trips} user={user} setTrips={setTrips} setUpdate={setUpdate} update={update}/>
         </Route>
         <Route path='/login'>
           <Login logIn={logIn}/>
@@ -137,7 +147,7 @@ function App() {
           <Favorites user={user} favorites={favorites} handleRemove={handleRemove}/>
         </Route>
         <Route exact path='/trips'>
-          <Trips trips={trips} addFavorite={addFavorite}/>
+          <Trips trips={trips} addFavorite={addFavorite} user={user}/>
         </Route>
         <Route exact path='/'>
           <LandingPage />

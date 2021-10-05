@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import {Redirect} from 'react-router-dom'
 
-export default function AddTrip({ handleAdd, trips, user }) {
+export default function AddTrip({ setTrips, trips, user, setUpdate, update }) {
     const [title, setTitle] = useState('')
     const [location, setLocation] = useState('')
     const [image, setImage] = useState('')
@@ -26,14 +27,19 @@ export default function AddTrip({ handleAdd, trips, user }) {
             })
         })
         .then(res => res.json())
-        .then((newTrip) => handleAdd(newTrip))
+        .then((newTrip) => {
+            const updatedTrips = [...trips, newTrip];
+            setTrips(updatedTrips);
+            setUpdate(!update)
+        })
+        setTitle('');
+        setLocation('');
+        setImage('');
+        setDescription('');
+        setLengthOfStay('');
+        <Redirect to="/trips" />;
+        // ^redirect does not work
         debugger;
-        // ^ this is not hittting
-        setTitle('')
-        setLocation('')
-        setImage('')
-        setDescription('')
-        setLengthOfStay('')
     }
 
     return (
