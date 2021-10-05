@@ -46,9 +46,7 @@ function App() {
   }, [user])
 
   useEffect(() => {
-    if (user[0]) {
-      userLoggedOn();
-    }    
+    userLoggedOn(); 
   }, [update])
 
   useEffect(() => {
@@ -115,7 +113,6 @@ function App() {
 
   // not hitting function. trips are added on the backend
   // move over to post fetch in addTrip
-  
   function handleAdd(newTrip) {
     debugger;
     // console.log(newTrip) 
