@@ -25,7 +25,9 @@ export default function Navbar({user, logOut}) {
                     <NavLink activeClassName="text-white" to='/trips' style={{ textDecoration: 'none' }}><li>Trips</li></NavLink>
                     <NavLink activeClassName="text-white" to='/favorites' style={{ textDecoration: 'none' }}><li>Favorites</li></NavLink>
                     <span>||</span>
-                    <NavLink activeClassName="text-white" to='/signup' style={{ textDecoration: 'none' }}><li>Sign up</li></NavLink>                    
+                    {loggedIn === 'Log in' ? 
+                    <NavLink activeClassName="text-white" to='/signup' style={{ textDecoration: 'none' }}><li>Sign up</li></NavLink> : null
+                    }                    
                     <NavLink activeClassName="text-white" to='/login' style={{ textDecoration: 'none' }}><li onClick={handleLogOut}>{loggedIn}</li></NavLink>
                 </ul>
             </nav>

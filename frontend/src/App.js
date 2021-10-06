@@ -131,7 +131,6 @@ function App() {
     .then(favorites => {
       setFavorites(favorites);
       setUser(user);
-      alert('Added trip to favorites!')
     })
   }
 
@@ -152,7 +151,7 @@ function App() {
           <Favorites user={user} favorites={favorites} handleRemove={handleRemove}/>
         </Route>
         <Route exact path='/trips' >
-          <Trips trips={trips} addFavorite={addFavorite} user={user}/>
+          <Trips trips={trips} addFavorite={addFavorite} user={user} favorites={favorites} />
         </Route>
         <Route exact path='/'>
           <LandingPage />

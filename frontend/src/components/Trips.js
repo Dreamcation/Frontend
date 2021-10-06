@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Cards from './Cards'
 import { Link } from 'react-router-dom'
 
-export default function Trips({trips, addFavorite, user}) {
+export default function Trips({trips, addFavorite, user, favorites}) {
     console.log(trips);
     const cards = trips.map(trip => (
             <Cards 
@@ -14,6 +14,7 @@ export default function Trips({trips, addFavorite, user}) {
                 // author={trip.name}
                 // image={trip.image}
                 // id={trip.id} 
+                favorites={favorites}
                 addFavorite={addFavorite}
                 user={user}
             />
