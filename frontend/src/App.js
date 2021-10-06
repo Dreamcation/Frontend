@@ -22,6 +22,11 @@ function App() {
       .then(setTrips)
   }
 
+  function addUser(newUser) {
+    const updatedUser = [...user, newUser]
+    setUser(updatedUser)
+  }
+
   function getFavorites(user) {
     if (user[0]) {
       let id = user[0].id;
@@ -105,27 +110,6 @@ function App() {
     // remove favorite from favorites state
   }
 
-  // function addUser(user) {
-  //   let info = {
-  //     firstName:  user.firstName,
-  //     lastName: user.lastName,
-  //     username: user.username,
-  //     password: user.password
-  //   }
-
-  //   fetch('http://localhost:9292/users', {
-  //     method: "POST",
-  //     redirect: "follow",
-  //     headers: {
-  //       'Content-Type' : 'application/json'
-  //     },
-  //     body: JSON.stringify({info})
-  //   })
-  //   .then(res => res.json())
-  //   .then(users => {
-  //     setUser(users);
-  //   })
-  // }
 
   function addFavorite(trip) {
     // not setup yet
@@ -162,7 +146,7 @@ function App() {
           <Login logIn={logIn}/>
         </Route>
         <Route path='/signup'>
-          <Signup/>
+          <Signup addUser={addUser}/>
         </Route>
         <Route path='/favorites'>
           <Favorites user={user} favorites={favorites} handleRemove={handleRemove}/>
