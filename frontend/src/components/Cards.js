@@ -20,13 +20,13 @@ export default function Cards({ trip, addFavorite, user, favorites }) {
     }
 
     // ternary doesn't work, but will add in the className
-    let className = {id} % 2 !==0 ? 'left-image' : 'right-image'
+    // let className = {{id} % 2 !==0 ? 'left-image' : 'right-image'}
 
     return (
         <div className='all-trips'>
             {favoriteButton ? 
             null :
-            <div className={className}>
+            <div className='left-image'>
                 <div className='img'>
                     <img src={image}/>
                 </div>

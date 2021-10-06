@@ -8,12 +8,6 @@ export default function Trips({trips, addFavorite, user, favorites}) {
             <Cards 
                 key={trip.id}
                 trip={trip}
-                // location={trip.location}
-                // desc={trip.description}
-                // length={trip.lengthOfStay}
-                // author={trip.name}
-                // image={trip.image}
-                // id={trip.id} 
                 favorites={favorites}
                 addFavorite={addFavorite}
                 user={user}

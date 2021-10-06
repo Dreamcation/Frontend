@@ -8,12 +8,16 @@ import Favorites from './components/Favorites';
 import Trips from './components/Trips'
 import LandingPage from './components/LandingPage'
 import AddTrip from './components/AddTrip'
+import Pagination from './components/Pagination';
+
 
 function App() {
   const [trips, setTrips] = useState([])
   const [user, setUser] = useState([])
   const [favorites, setFavorites] = useState([])
   const [update, setUpdate] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage] = useState(4)
 
   // all fetches are here, feel free to update if needed
   function getTrips() {
@@ -134,6 +138,14 @@ function App() {
     })
   }
 
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = trips.slice(indexOfFirstPost, indexOfLastPost)
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber)
+    window.scrollTo(0, 0)
+  }
+
   return (
     <div className="App">
       <Navbar user={user} logOut={logOut}/>
@@ -151,7 +163,8 @@ function App() {
           <Favorites user={user} favorites={favorites} handleRemove={handleRemove}/>
         </Route>
         <Route exact path='/trips' >
-          <Trips trips={trips} addFavorite={addFavorite} user={user} favorites={favorites} />
+          <Trips trips={currentPosts} totalPosts={trips.length} addFavorite={addFavorite} user={user} favorites={favorites} />
+          <Pagination postsPerPage={postsPerPage} totalPosts={trips.length} paginate={paginate}/>
         </Route>
         <Route exact path='/'>
           <LandingPage />
