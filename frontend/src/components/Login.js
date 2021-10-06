@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect, useHistory } from 'react-router-dom'
 
 export default function Login({logIn}) {
     const blankForm = {username: "", password: ""}
@@ -19,9 +19,9 @@ export default function Login({logIn}) {
                     <span>Username: </span>
                     <input placeholder='Username' name='username' value={formData.username} onChange={(e) => formState(e)}></input>
                     <span>Password: </span>
-                    <input placeholder='Password' name='password' value={formData.password} onChange={(e) => formState(e)}></input>
+                    <input type='password' placeholder='Password' name='password' value={formData.password} onChange={(e) => formState(e)}></input>
                 </div>
-                <Link to='/trips'><button onClick={(e) => logIn(e, formData)}>Log in!</button></Link>
+                <button onClick={(e) => logIn(e, formData)}><Link to='/trips'>Log in!</Link></button>
                 <Link to='/'><button>Cancel</button></Link>
             </div>
         </div>

@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 
-export default function Signup() {
+export default function Signup({ addUser }) {
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setlastName] = useState('')
+    const [username, setusername] = useState('')
+    const [password, setpassword] = useState('')
     
     return (
         <div className='bg-image'>

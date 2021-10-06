@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Redirect} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 export default function AddTrip({ setTrips, trips, user, setUpdate, update }) {
     const [title, setTitle] = useState('')
@@ -7,6 +7,7 @@ export default function AddTrip({ setTrips, trips, user, setUpdate, update }) {
     const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
     const [lengthOfStay, setLengthOfStay] = useState('')
+    const history = useHistory()
     // const {user_id} = trips
 
     function handleSubmit(e) {
@@ -37,9 +38,8 @@ export default function AddTrip({ setTrips, trips, user, setUpdate, update }) {
         setImage('');
         setDescription('');
         setLengthOfStay('');
-        <Redirect to="/trips" />;
+        history.push('/trips')
         // ^redirect does not work
-        debugger;
     }
 
     return (

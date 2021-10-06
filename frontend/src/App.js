@@ -1,6 +1,6 @@
 import './App.css';
 import { Switch, Route } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -49,7 +49,7 @@ function App() {
     userLoggedOn(); 
   }, [update])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getFavorites(user);
   }, [user, update])
 
@@ -105,8 +105,29 @@ function App() {
     // remove favorite from favorites state
   }
 
+  // function addUser(user) {
+  //   let info = {
+  //     firstName:  user.firstName,
+  //     lastName: user.lastName,
+  //     username: user.username,
+  //     password: user.password
+  //   }
+
+  //   fetch('http://localhost:9292/users', {
+  //     method: "POST",
+  //     redirect: "follow",
+  //     headers: {
+  //       'Content-Type' : 'application/json'
+  //     },
+  //     body: JSON.stringify({info})
+  //   })
+  //   .then(res => res.json())
+  //   .then(users => {
+  //     setUser(users);
+  //   })
+  // }
+
   function addFavorite(trip) {
-    debugger;
     // not setup yet
     let favorite = {
       title: trip.title,
@@ -126,8 +147,8 @@ function App() {
     .then(favorites => {
       setFavorites(favorites);
       setUser(user);
+      alert('Added trip to favorites!')
     })
-    debugger;
   }
 
   return (
@@ -141,7 +162,7 @@ function App() {
           <Login logIn={logIn}/>
         </Route>
         <Route path='/signup'>
-          <Signup />
+          <Signup/>
         </Route>
         <Route path='/favorites'>
           <Favorites user={user} favorites={favorites} handleRemove={handleRemove}/>

@@ -3,6 +3,7 @@ import Cards from './Cards'
 import { Link } from 'react-router-dom'
 
 export default function Trips({trips, addFavorite, user}) {
+    console.log(trips);
     const cards = trips.map(trip => (
             <Cards 
                 key={trip.id}

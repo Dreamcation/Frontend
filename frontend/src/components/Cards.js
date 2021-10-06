@@ -23,7 +23,7 @@ export default function Cards({ trip, addFavorite, user }) {
                 </div>
                 <div className='text' id={id}>
                     <h1>{location}</h1>
-                    <p>{desc}</p>
+                    <p>{trip.description}</p>
                     {user[0] ? <button onClick={handleFavorite}>Favorite</button> : null}
                     <div className='bottom-content'>
                         <p className='length'>Length of Stay: <span>{length}</span> days</p>
