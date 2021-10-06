@@ -145,13 +145,13 @@ function App() {
         <Route path='/login'>
           <Login logIn={logIn}/>
         </Route>
-        <Route path='/signup'>
+        <Route path='/signup' >
           <Signup addUser={addUser}/>
         </Route>
         <Route path='/favorites'>
           <Favorites user={user} favorites={favorites} handleRemove={handleRemove}/>
         </Route>
-        <Route exact path='/trips'>
+        <Route exact path='/trips' >
           <Trips trips={trips} addFavorite={addFavorite} user={user}/>
         </Route>
         <Route exact path='/'>
