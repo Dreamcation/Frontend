@@ -6,6 +6,8 @@ export default function Signup({ addUser }) {
     const [lastName, setlastName] = useState('')
     const [username, setusername] = useState('')
     const [password, setpassword] = useState('')
+
+    
     
     return (
         <div className='bg-image'>
