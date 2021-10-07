@@ -2,23 +2,35 @@ import React, {useState, useEffect} from 'react'
 import Cards from './Cards'
 import { Link } from 'react-router-dom'
 
-export default function Trips({trips, addFavorite, user, favorites }) {
-    
-    console.log(trips);
-    const cards = trips.map(trip => (
+export default function Trips({trips, addFavorite, user, favorites, searchTrips, setSearchTrips }) {
+
+    const cards = trips.map(trip => {
+        let favBttn = "Favorite";
+        
+        if (favorites[0]){
+            favorites.map(favorite => {
+                if (favorite.location === trip.location) {
+                    return favBttn = "Favorited";
+                } 
+        })};
+
+        return (
             <Cards 
                 key={trip.id}
                 trip={trip}
                 favorites={favorites}
                 addFavorite={addFavorite}
+                favBttn={favBttn}
                 user={user}
             />
-    ))
+        )
+    })
 
     return (
         <div className='trip-container'>
             <div className='search-container'>
                 <h1>Check out these trips!</h1>
+                <input value={searchTrips} placeholder="Search by Location...   🔍" onChange={(e) => setSearchTrips(e.target.value)}></input>
                 <Link to='/trips/new'><button>Add Trip</button></Link> 
             </div>
             {cards}

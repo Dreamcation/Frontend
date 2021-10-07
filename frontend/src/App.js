@@ -10,7 +10,6 @@ import LandingPage from './components/LandingPage'
 import AddTrip from './components/AddTrip'
 import Pagination from './components/Pagination';
 
-
 function App() {
   const [trips, setTrips] = useState([])
   const [user, setUser] = useState([])
@@ -18,7 +17,8 @@ function App() {
   const [update, setUpdate] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(4)
-  const [search, setSearch] = useState('')
+  const [searchFavs, setSearchFavs] = useState('')
+  const [searchTrips, setSearchTrips] = useState('')
 
   // all fetches are here, feel free to update if needed
   function getTrips() {
@@ -43,8 +43,6 @@ function App() {
       .then(res => res.json())
       .then(setFavorites)
   }}
-
-  console.log(favorites);
 
   // grabs the user that is logged on and set's it to user state
    function userLoggedOn () {
@@ -114,12 +112,9 @@ function App() {
       redirect: "follow"})
     .then(res => res.json())
     .then(setUpdate(!update))
-    // remove favorite from favorites state
   }
 
-
   function addFavorite(trip) {
-    // not setup yet
     let favorite = {
       title: trip.title,
       location: trip.location,
@@ -137,21 +132,32 @@ function App() {
     .then(res => res.json())
     .then(favorites => {
       setFavorites(favorites);
-      setUser(user);
+      // setUser(user);
+      setUpdate(!update)
     })
   }
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = trips.slice(indexOfFirstPost, indexOfLastPost)
+  let currentPosts = trips.slice(indexOfFirstPost, indexOfLastPost)
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber)
     window.scrollTo(0, 0)
   }
 
-  const searchList = favorites.filter((favorite) => {
-    return favorite.title.toLowerCase().includes(search.toLowerCase())
-})
+  let searchedFavs = favorites;
+  if (searchFavs !== '') {
+    searchedFavs = favorites.filter((favorite) => {
+      return favorite.title.toLowerCase().includes(searchFavs.toLowerCase())
+  })}
+
+  let searchedTrips = trips;
+  if (searchTrips !== '' ) {
+    searchedTrips = trips.filter((trip) => {
+        return trip.title.toLowerCase().includes(searchTrips.toLowerCase())
+    })
+  currentPosts = searchedTrips;
+  }
 
   return (
     <div className="App">
@@ -167,11 +173,11 @@ function App() {
           <Signup addUser={addUser}/>
         </Route>
         <Route path='/favorites'>
-          <Favorites user={user} favorites={searchList} handleRemove={handleRemove} search={search} setSearch={setSearch}/>
+          <Favorites user={user} favorites={searchedFavs} handleRemove={handleRemove} searchFavs={searchFavs} setSearchFavs={setSearchFavs}/>
         </Route>
         <Route exact path='/trips' >
-          <Trips trips={currentPosts} totalPosts={trips.length} addFavorite={addFavorite} user={user} favorites={favorites} />
-          <Pagination postsPerPage={postsPerPage} totalPosts={trips.length} paginate={paginate}/>
+          <Trips trips={currentPosts} totalPosts={trips.length} addFavorite={addFavorite} user={user} favorites={favorites} searchTrips={searchTrips} setSearchTrips={setSearchTrips}/>
+          {searchTrips.length < 1 ? <Pagination postsPerPage={postsPerPage} totalPosts={trips.length} paginate={paginate}/> : null}
         </Route>
         <Route exact path='/'>
           <LandingPage />
