@@ -18,6 +18,7 @@ function App() {
   const [update, setUpdate] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage] = useState(4)
+  const [search, setSearch] = useState('')
 
   // all fetches are here, feel free to update if needed
   function getTrips() {
@@ -42,6 +43,8 @@ function App() {
       .then(res => res.json())
       .then(setFavorites)
   }}
+
+  console.log(favorites);
 
   // grabs the user that is logged on and set's it to user state
    function userLoggedOn () {
@@ -146,6 +149,10 @@ function App() {
     window.scrollTo(0, 0)
   }
 
+  const searchList = favorites.filter((favorite) => {
+    return favorite.title.toLowerCase().includes(search.toLowerCase())
+})
+
   return (
     <div className="App">
       <Navbar user={user} logOut={logOut}/>
@@ -160,7 +167,7 @@ function App() {
           <Signup addUser={addUser}/>
         </Route>
         <Route path='/favorites'>
-          <Favorites user={user} favorites={favorites} handleRemove={handleRemove}/>
+          <Favorites user={user} favorites={searchList} handleRemove={handleRemove} search={search} setSearch={setSearch}/>
         </Route>
         <Route exact path='/trips' >
           <Trips trips={currentPosts} totalPosts={trips.length} addFavorite={addFavorite} user={user} favorites={favorites} />

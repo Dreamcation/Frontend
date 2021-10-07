@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react'
 import Cards from './Cards'
 import { Link } from 'react-router-dom'
 
-export default function Trips({trips, addFavorite, user, favorites}) {
+export default function Trips({trips, addFavorite, user, favorites }) {
+    
     console.log(trips);
     const cards = trips.map(trip => (
             <Cards 
@@ -18,7 +19,6 @@ export default function Trips({trips, addFavorite, user, favorites}) {
         <div className='trip-container'>
             <div className='search-container'>
                 <h1>Check out these trips!</h1>
-                <input placeholder="Search by Location...   🔍"></input>
                 <Link to='/trips/new'><button>Add Trip</button></Link> 
             </div>
             {cards}

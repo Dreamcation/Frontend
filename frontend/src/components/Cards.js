@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 export default function Cards({ trip, addFavorite, user, favorites }) {
-    const {location, description, lengthOfStay, name, image='http://cdn.cnn.com/cnnnext/dam/assets/210727130709-alaska-matanuska-glacier-2.jpg', id} = trip;    
+    const {location, description, lengthOfStay, name, image, id} = trip;    
     const [favoriteButton, setFavoriteButton] = useState(false)
 
     let author = name;

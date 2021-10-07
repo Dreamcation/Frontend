@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
-export default function Favorites({user, favorites, handleRemove}) {
+export default function Favorites({user, favorites, handleRemove, search, setSearch}) {
 
     return (
         <div>
             <div className='search-container'>
                 {user[0] ? <h1>Your favorite trips!</h1> : <h1>Favorited trips!</h1>}
-                <input placeholder="Search by Location...   🔍"></input>
+                <input value={search} placeholder="Search by Location...   🔍" onChange={(e) => setSearch(e.target.value)}></input>
             </div>
             <div className='favorite-columns'>
                 <div className='visited'>
