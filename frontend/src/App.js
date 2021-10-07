@@ -1,5 +1,5 @@
 import './App.css';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, useHistory  } from 'react-router-dom'
 import React, { useState, useEffect, useLayoutEffect } from 'react'
 import Navbar from './components/Navbar';
 import Login from './components/Login';
@@ -19,6 +19,9 @@ function App() {
   const [postsPerPage] = useState(4)
   const [searchFavs, setSearchFavs] = useState('')
   const [searchTrips, setSearchTrips] = useState('')
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const history = useHistory()
 
   // all fetches are here, feel free to update if needed
   function getTrips() {
@@ -37,7 +40,10 @@ function App() {
       let id = user[0].id;
       fetch(`http://localhost:9292/favorites/user/${id}`)
       .then(res => res.json())
-      .then(setFavorites)
+      .then(data => {
+        setFavorites(data)
+        setIsLoggedIn(true)
+      })
     } else {
       fetch('http://localhost:9292/favorites')
       .then(res => res.json())
@@ -63,24 +69,25 @@ function App() {
     getFavorites(user);
   }, [user, update])
 
-  function logIn (e, formData) {
+  function logIn (e, data) {
     e.preventDefault();
     fetch('http://localhost:9292/login',{
       method: "PATCH",
-      redirect: "follow",
       headers: {
         'Content-Type': 'application/json'
         },
       body: JSON.stringify({
-        username: formData.username,
-        password: formData.password
+        username: data.username,
+        password: data.password
     })})
     .then(res => res.json())
     .then(user => {
       setUser(user);
+      setIsLoggedIn(true)
       setUpdate(!update)
     })
     .catch(error => console.log("Log in incorrect: ", error))
+    history.push('/favorites')
   }
 
   function logOut (e) {
@@ -88,7 +95,6 @@ function App() {
     let id = user[0].id;
     fetch(`http://localhost:9292/logout/${id}`,{
       method: "PATCH",
-      redirect: "follow",
       headers: {
         'Content-Type': 'application/json'
         },
@@ -99,17 +105,18 @@ function App() {
     .then(res => res.json())
     .then(user => {
       setUser([]);
+      setIsLoggedIn(false)
       setUpdate(!update)
     })
     .catch(error => console.log("Log out error: ", error))
+    history.push('/')
   }
 
   function handleRemove (e) {
     e.preventDefault();
     let id = e.target.parentNode.id;
     fetch(`http://localhost:9292/favorites/${id}`, {
-      method: "DELETE",
-      redirect: "follow"})
+      method: "DELETE"})
     .then(res => res.json())
     .then(setUpdate(!update))
   }
@@ -123,7 +130,6 @@ function App() {
     }
     fetch('http://localhost:9292/favorites', {
       method: "POST",
-      redirect: "follow",
       headers: {
         'Content-Type': 'application/json'
         },
@@ -170,10 +176,10 @@ function App() {
           <Login logIn={logIn}/>
         </Route>
         <Route path='/signup' >
-          <Signup addUser={addUser}/>
+          <Signup addUser={addUser} logOut={logOut} isLoggedIn={isLoggedIn} />
         </Route>
         <Route path='/favorites'>
-          <Favorites user={user} favorites={searchedFavs} handleRemove={handleRemove} searchFavs={searchFavs} setSearchFavs={setSearchFavs}/>
+          <Favorites user={user} favorites={searchedFavs} handleRemove={handleRemove} searchFavs={searchFavs} setSearchFavs={setSearchFavs} isLoggedIn={isLoggedIn}/>
         </Route>
         <Route exact path='/trips' >
           <Trips trips={currentPosts} totalPosts={trips.length} addFavorite={addFavorite} user={user} favorites={favorites} searchTrips={searchTrips} setSearchTrips={setSearchTrips}/>

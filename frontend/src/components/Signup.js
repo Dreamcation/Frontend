@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Link, Redirect, useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
-export default function Signup({ addUser }) {
+export default function Signup({ addUser, logOut, isLoggedIn }) {
     const [firstName, setFirstName] = useState('')
     const [lastName, setlastName] = useState('')
     const [username, setusername] = useState('')
@@ -10,7 +10,7 @@ export default function Signup({ addUser }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-
+        if (isLoggedIn){logOut(e)}
         fetch('http://localhost:9292/users', {
             method: 'POST',
             headers: {
@@ -25,7 +25,7 @@ export default function Signup({ addUser }) {
         })
         .then(res => res.json())
         .then(newUser => addUser(newUser))
-
+        
         setFirstName('')
         setlastName('')
         setusername('')

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 export default function Cards({ trip, addFavorite, user, favBttn }) {
     const {location, description, lengthOfStay, name, image, id} = trip;    
@@ -19,7 +19,7 @@ export default function Cards({ trip, addFavorite, user, favBttn }) {
         <div className='all-trips'>
             <div className='left-image'>
                 <div className='img'>
-                    <img src={image}/>
+                    <img alt={location} src={image}/>
                 </div>
                 <div className='text' id={id}>
                     <h1>{location}</h1>

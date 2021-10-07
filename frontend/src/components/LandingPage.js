@@ -10,7 +10,7 @@ export default function LandingPage() {
                 <h1 className='title'>Dreamcation</h1>
             </div>
             <div className='landing-info'>
-                    <img className="landing-img" src="http://cdn.cnn.com/cnnnext/dam/assets/210727130709-alaska-matanuska-glacier-2.jpg" />
+                    <img className="landing-img" src="http://cdn.cnn.com/cnnnext/dam/assets/210727130709-alaska-matanuska-glacier-2.jpg" alt="alaska matanuska glacier" />
                 <div>
                     <h1 className='p-title'>Welcome to Dreamcation!</h1>
                     <p className='p-content'>
