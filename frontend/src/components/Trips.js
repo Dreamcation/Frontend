@@ -32,7 +32,7 @@ export default function Trips({trips, addFavorite, user, favorites, searchTrips,
             <div className='search-container'>
                 <h1>Check out these trips!</h1>
                 <input value={searchTrips} placeholder="Search by Location...   🔍" onChange={(e) => setSearchTrips(e.target.value)}></input>
-                <Link to='/trips/new'><button>Add Trip</button></Link> 
+                {user[0] ? <Link to='/trips/new'><button>Add Trip</button></Link> : null}
             </div>
             {cards}
         </div>
